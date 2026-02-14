@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escanea Mi Corazón Morenita</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --rojo-pasion: #d00000;
+            --rosa-fuerte: #ff4d6d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: radial-gradient(circle, #ffeef2 0%, #ffc0cb 100%);
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .corazon-vuelo {
+            position: absolute;
+            color: var(--rosa-fuerte);
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: subir var(--d) linear infinite;
+            opacity: var(--o);
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.5); }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 6px double var(--rojo-pasion);
+            outline: 3px solid white;
+            outline-offset: -12px;
+            box-shadow: 0 0 30px rgba(208, 0, 0, 0.2),
+                        inset 0 0 15px rgba(255, 192, 203, 0.5);
+            text-align: center;
+            max-width: 360px;
+            width: 85%;
+            z-index: 10;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .titulo-principal {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: var(--rojo-pasion);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .qr-corazon {
+            width: 220px;
+            max-width: 100%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(208, 0, 0, 0.4);
+            animation: latido 2s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .firma {
+            margin-top: 25px;
+            color: var(--rojo-pasion);
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    function crearCorazones() {
+        const body = document.body;
+        for (let i = 0; i < 35; i++) {
+            const c = document.createElement('div');
+            c.className = 'corazon-vuelo';
+            c.innerHTML = ['❤️', '💖', '💕'][Math.floor(Math.random() * 3)];
+            c.style.left = Math.random() * 100 + 'vw';
+            c.style.setProperty('--d', Math.random() * 5 + 5 + 's');
+            c.style.setProperty('--o', Math.random() * 0.6 + 0.2);
+            c.style.fontSize = Math.random() * 20 + 15 + 'px';
+            c.style.animationDelay = Math.random() * 8 + 's';
+            body.appendChild(c);
+        }
+    }
+    crearCorazones();
+</script>
+
+<div class="glass-card">
+    <h1 class="titulo-principal">Escanea Mi Corazón Morenita</h1>
+
+    <img src="img/qr-code.png" alt="QR Corazón" class="qr-corazon">
+
+    <p style="color:#444;">Has recibido una sorpresa muy especial de changuito... ❤️</p>
+
+    <div class="firma">CON TODO MI AMOR</div>
+</div>
+
+</body>
+</html>
